@@ -99,22 +99,3 @@ workflows:
   build:
     jobs:
       - build-go1.9-4
-      - build-go1.9-2
-      - build-go1.9-1
-      - build-go1.8-4
-      - build-go1.8-2
-      - build-go1.8-1
-      - build-go1.7-4
-      - build-go1.7-2
-      - build-go1.7-1
-      - coverage:
-          requires:
-            - build-go1.9-4
-            - build-go1.9-2
-            - build-go1.9-1
-            - build-go1.8-4
-            - build-go1.8-2
-            - build-go1.8-1
-            - build-go1.7-4
-            - build-go1.7-2
-            - build-go1.7-1
