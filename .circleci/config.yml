@@ -8,12 +8,17 @@ common-build: &common-build
     - run: go get github.com/jstemmer/go-junit-report
     - run: make vm/parser.go
     - run: make install_coverage_deps
-    - run: sudo curl -L 'https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2' | tar xvjf - --strip-components 3 -C $HOME/bin
+    - run: sudo curl -L 'https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2' | tar xvjf - --strip-components 3 -C $HOME
     - run: go build -o /tmp/mtail
     - store_artifacts:
         path: /tmp/mtail
         destination: mtail
-    - run: github-release upload --user Lusotycoon --repo mtail --tag v3.0.0-release-test --name "mtail-linux-amd64" --file /tmp/mtail
+    - run:  $HOME/github-release upload --user Lusotycoon --repo mtail --tag v3.0.0-release-test --name "mtail-linux-amd64" --file /tmp/mtail
+
+    steps:
+    - add_ssh_keys:
+     fingerprints:
+       - "ae:5b:02:92:42:35:95:04:c7:a4:13:2b:45:77:a3:06"
     - run:
         name: Run tests with race detector
         command: |
