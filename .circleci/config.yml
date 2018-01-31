@@ -15,10 +15,6 @@ common-build: &common-build
         destination: mtail
     - run:  $HOME/github-release upload --user Lusotycoon --repo mtail --tag v3.0.0-release-test --name "mtail-linux-amd64" --file /tmp/mtail
 
-    steps:
-    - add_ssh_keys:
-     fingerprints:
-       - "ae:5b:02:92:42:35:95:04:c7:a4:13:2b:45:77:a3:06"
     - run:
         name: Run tests with race detector
         command: |
