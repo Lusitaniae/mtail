@@ -13,7 +13,7 @@ common-build: &common-build
     - store_artifacts:
         path: /tmp/mtail
         destination: mtail
-    - run:  $HOME/github-release upload --user Lusotycoon --repo mtail --tag v3.0.0-release-test --name "mtail-linux-amd64" --file /tmp/mtail
+    - run:  $HOME/github-release upload --user Lusitaniae --repo mtail --tag v3.0.0-release-test --name "mtail-linux-amd64" --file /tmp/mtail
 
     - run:
         name: Run tests with race detector
