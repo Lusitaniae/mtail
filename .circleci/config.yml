@@ -8,6 +8,10 @@ common-build: &common-build
     - run: go get github.com/jstemmer/go-junit-report
     - run: make vm/parser.go
     - run: make install_coverage_deps
+    - run: go build -o /tmp/mtail
+    - store_artifacts:
+        path: /tmp/mtail
+        destination: mtail
     - run:
         name: Run tests with race detector
         command: |
@@ -80,7 +84,6 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run: make install_coverage_deps
-      - run: go build -o /tmp/mtail
       - run:
           name: Generate coverage
           command: |
@@ -93,9 +96,6 @@ jobs:
       - store_artifacts:
           path: coverage.html
           destination: coverage
-      - store_artifacts:
-          path: /tmp/mtail
-          destination: mtail
 
 workflows:
   version: 2
